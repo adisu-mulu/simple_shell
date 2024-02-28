@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         char *user_command = NULL;
         char *token = NULL;
 
-        if (argc == 1)
+        if (argc == 1 && isatty(STDIN_FILENO))
             write(1, input_symbol, custom_strlen(input_symbol));
 
         if (getline(&user_command, &n, stdin) == -1)
