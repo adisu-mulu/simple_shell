@@ -39,9 +39,6 @@ int main(int argc, char *argv[])
 
 		if (custom_strcmp(user_command, "\n") == 0)
 		{
-			free(user_command);
-			free(tkwpCopy);
-			free(token_command_with_path);
 			continue;
 		}
 
