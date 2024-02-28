@@ -37,7 +37,12 @@ int main(int argc, char *argv[])
 		}
 
 		if (custom_strcmp(user_command, "\n") == 0)
+		{
+			free(user_command);
+			free(tkwpCopy);
+			free(token_command_with_path);
 			continue;
+		}
 
 		user_command[custom_strcspn(user_command, "\n")] = '\0';
 		tkwpCopy = custom_strdup(user_command);
