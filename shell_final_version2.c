@@ -179,6 +179,7 @@ void handle_exit(char *user_command)
 
 /**
  * handle_env - function
+ * @env: character
  * Return: nothing
  */
 void handle_env(char **env)
