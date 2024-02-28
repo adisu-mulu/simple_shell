@@ -5,13 +5,13 @@
 #include <sys/wait.h>
 #include "main.h"
 
+
 #define MAX_CMDS 10
 #define MAX_PATH 250
 
-
 void execute_command(char *cmds[], int argc, char *pathWithCommand);
 void handle_exit(char *user_command);
-void handle_env(void);
+void handle_env(char **env);
 
 /**
  * main - function
@@ -26,8 +26,7 @@ int main(int argc, char *argv[])
 	{
 		char *cmds[MAX_CMDS];
 		size_t n;
-		char *user_command = NULL;
-		char *token_command_with_path = NULL;
+		char *user_command = NULL, *token_command_with_path = NULL;
 		char *input_symbol = "$ ";
 		int x;
 		char *tkwpCopy = NULL;
@@ -55,12 +54,14 @@ int main(int argc, char *argv[])
 		}
 		cmds[x] = NULL;
 
-		if (custom_strcmp(cmds[0], "exit") == 0 || custom_strcmp(cmds[0], "/bin/exit") == 0)
+		if (custom_strcmp(cmds[0], "exit") == 0)
+			handle_exit(user_command);
+
+		if (custom_strcmp(cmds[0], "/bin/exit") == 0)
 			handle_exit(user_command);
 
 		else if (custom_strcmp(cmds[0], "env") == 0)
-			handle_env();
-
+			handle_env(__environ);
 		else
 		{
 			char pathWithCommand[MAX_PATH];
@@ -180,14 +181,12 @@ void handle_exit(char *user_command)
  * handle_env - function
  * Return: nothing
  */
-void handle_env(void)
+void handle_env(char **env)
 {
-	extern char **environ;
-	char **env = environ;
-
 	while (*env != NULL)
 	{
 		printf("%s\n", *env);
 		env++;
 	}
 }
+
