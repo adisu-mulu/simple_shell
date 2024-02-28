@@ -36,6 +36,9 @@ int main(int argc, char *argv[])
 			free(user_command);
 			exit(1);
 		}
+		if(custom_strcmp(user_command,  "\n") == 0)
+			continue;
+
 		user_command[custom_strcspn(user_command, "\n")] = '\0';
 		tkwpCopy = custom_strdup(user_command);
 		token_command_with_path = strtok(tkwpCopy, " ");
@@ -132,8 +135,10 @@ int main(int argc, char *argv[])
 					close(pipe_fd[0]);
 					dup2(pipe_fd[1], STDOUT_FILENO);
 					execve(cmds[0], cmds, NULL);
+				
 					exit(0);
 				}
+				
 			}
 			else
 			{
@@ -156,5 +161,6 @@ int main(int argc, char *argv[])
 		free(tkwpCopy);
 		
 	}
+	printf("\n");
 	return (0);
 }
