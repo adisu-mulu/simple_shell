@@ -9,9 +9,6 @@
 #define MAX_CMDS 10
 #define MAX_PATH 250
 
-void execute_command(char *cmds[], int argc, char *pathWithCommand);
-void handle_exit(char *user_command);
-void handle_env(char **env);
 
 /**
  * main - function

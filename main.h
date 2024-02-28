@@ -7,6 +7,9 @@ size_t custom_strlen(const char *str);
 char *custom_getenv(const char *name);
 void custom_strcpy(char *dest, const char *src);
 char *custom_strdup(const char *str);
+void execute_command(char *cmds[], int argc, char *pathWithCommand);
+void handle_exit(char *user_command);
+void handle_env(char **env);
 
 
 #endif
