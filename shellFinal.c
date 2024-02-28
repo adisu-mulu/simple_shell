@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 			x++;
 		}
 		cmds[x] = NULL;
-		if (custom_strcmp(cmds[0], "exit") == 0)
+		if (custom_strcmp(cmds[0], "exit") == 0 || custom_strcmp(cmds[0], "/bin/exit") == 0)
 		{
 			exit(0);
 		}
@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
 		}
 		else if (y == 0)
 		{
-			printf("%s: %s: not found\n", argv[0], user_command);
+			printf("%s: 1: %s: not found\n", argv[0], user_command);
 		}
 		free(user_command);
 		free(tkwpCopy);
