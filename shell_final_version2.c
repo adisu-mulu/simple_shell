@@ -88,7 +88,7 @@ void execute_command(char *cmds[], int argc, char *pathWithCommand)
 	else
 	{
 		char *path = custom_getenv("PATH");
-		char *path_copy = strdup(path);
+		char *path_copy = custom_strdup(path);
 		char *token = strtok(path_copy, ":");
 
 		while (token != NULL)
