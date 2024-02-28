@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
 			write(1, input_symbol, custom_strlen(input_symbol));
 		if (getline(&user_command, &n, stdin) == -1)
 		{
+			free(tkwpCopy);
 			free(user_command);
 			exit(1);
 		}
@@ -57,10 +58,16 @@ int main(int argc, char *argv[])
 		cmds[x] = NULL;
 
 		if (custom_strcmp(cmds[0], "exit") == 0)
+		{
+			free(tkwpCopy);
 			handle_exit(user_command);
+		}
 
 		if (custom_strcmp(cmds[0], "/bin/exit") == 0)
+		{
+			free(tkwpCopy);
 			handle_exit(user_command);
+		}
 
 		else if (custom_strcmp(cmds[0], "env") == 0)
 			handle_env(__environ);
@@ -70,8 +77,8 @@ int main(int argc, char *argv[])
 
 			execute_command(cmds, argc, pathWithCommand);
 		}
-		free(user_command);
 		free(tkwpCopy);
+		free(user_command);	
 	}
 	return (0);
 }
